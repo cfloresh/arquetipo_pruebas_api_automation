@@ -10,13 +10,24 @@ test('Prueba metodo GET request a servlet',{ tag: ['@regresion', '@ServiciosServ
 
 
 
+const xlsx = require('xlsx')
+// leer el archivo excel
+const filePath = './data/DataDriven.xlsx'
+const workbook = xlsx.readFile(filePath)
+const sheetName = 'test3';
+const worksheet = workbook.Sheets[sheetName];
+const records = xlsx.utils.sheet_to_json(worksheet);
+// lee el reglon posterior al encabezado
+const testServlet = records[0];
 
 test('Prueba metodo POST request a servlet',{ tag: ['@regresion', '@ServiciosServlet','@ServiciosServlerPost'] }, async () => {
+  console.log(testServlet.key1)
+  console.log(testServlet.key2)
   const context = await request.newContext();
   const response = await context.post('http://ww84.yourserver.com/yourServletPath', {
     data: {
-      key1: 'value1',
-      key2: 'value2',
+      key1: testServlet.key1,
+      key2: testServlet.key2,
       // agrega los datos requeridos para tu solicitud POST
     },
     headers: {

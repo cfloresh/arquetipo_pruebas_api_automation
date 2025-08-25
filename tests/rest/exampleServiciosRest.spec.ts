@@ -10,11 +10,15 @@ import { bodyRequest } from '../../data/userRequestBody'
 import { bodyRequestUpdate } from '../../data/updatePetBody'
 
 
+
 /*aqui la estructura basica del test*/
 /*metodo post*/
-test('Crear mascota, servicio rest', { tag: ['@regresion', '@crearconpost'] }, async ({ request }) => {
+test('Crear Usuaruio, servicio rest', { tag: ['@regresion', '@TC-0001'] }, async ({ request }) => {
+  console.log("body del request")
+  console.log(bodyRequest)
   const createNewUserInstance = new CreateNewUser(request)
   const newUserResponse = await createNewUserInstance.metodoInfo(bodyRequest)
+  console.log("Response del servicio")
   console.log(JSON.stringify(await newUserResponse.json()))
   const revisarNuevoUsuarioInstance = new RevisarUsuarioCreado()
   await revisarNuevoUsuarioInstance.metodoInfo(newUserResponse)
@@ -44,6 +48,8 @@ test('Eliminar mascota', { tag: ['@regresion', '@eliminarElemento'] }, async ({ 
 
 /*metodo put*/
 test('Actualizar elemento mascota', { tag: ['@regresion', '@actualizarElemento'] }, async ({ request }) => {
+  console.log("body del request update")
+  console.log(bodyRequestUpdate)
   const actualizarElementosIntance = new updatePets(request)
   const actualizarResponse = await actualizarElementosIntance.metodoInfoUpdate(bodyRequestUpdate)
   console.log(JSON.stringify(await actualizarResponse.json()))
