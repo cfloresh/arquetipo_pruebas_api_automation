@@ -6,18 +6,18 @@ import { revisarListaElementos } from '../../task/assertions/revisarElementosLis
 import { deleteElement } from '../../task/execution/eliminarMascota'
 import { updatePets } from '../../task/execution/updateElement'
 import { revisarEliminarElementos } from '../../task/assertions/revisarElminarElemento'
-import { bodyRequest } from '../../data/userRequestBody'
-import { bodyRequestUpdate } from '../../data/updatePetBody'
+import { initializeRequestBodyCreate } from '../../data/userRequestBody'
+import { initializeRequestBody } from '../../data/updatePetBodyv2'
 
 
 
-/*aqui la estructura basica del test*/
-/*metodo post*/
+
 test('Crear Usuaruio, servicio rest', { tag: ['@regresion', '@TC-0001'] }, async ({ request }) => {
-  console.log("body del request")
-  console.log(bodyRequest)
+  const bodyRequestCreate = await initializeRequestBodyCreate()
+  console.log("body del request createee")
+  console.log(bodyRequestCreate)
   const createNewUserInstance = new CreateNewUser(request)
-  const newUserResponse = await createNewUserInstance.metodoInfo(bodyRequest)
+  const newUserResponse = await createNewUserInstance.metodoInfo(bodyRequestCreate)
   console.log("Response del servicio")
   console.log(JSON.stringify(await newUserResponse.json()))
   const revisarNuevoUsuarioInstance = new RevisarUsuarioCreado()
@@ -45,9 +45,10 @@ test('Eliminar mascota', { tag: ['@regresion', '@eliminarElemento'] }, async ({ 
 })
 
 
-
 /*metodo put*/
 test('Actualizar elemento mascota', { tag: ['@regresion', '@actualizarElemento'] }, async ({ request }) => {
+  // Llama a la función para obtener el cuerpo de la solicitud
+  const bodyRequestUpdate = await initializeRequestBody()
   console.log("body del request update")
   console.log(bodyRequestUpdate)
   const actualizarElementosIntance = new updatePets(request)
@@ -56,10 +57,3 @@ test('Actualizar elemento mascota', { tag: ['@regresion', '@actualizarElemento']
   const revisarElementUpdateIntance = new revisarEliminarElementos()
   await revisarElementUpdateIntance.metodoInfoRevisarEliminar(actualizarResponse)
 })
-
-
-
-
-
-
-

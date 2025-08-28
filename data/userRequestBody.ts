@@ -1,21 +1,18 @@
-const xlsx = require('xlsx')
-// leer el archivo excel
-const filePath = './data/DataDriven.xlsx'
-const workbook = xlsx.readFile(filePath)
-const sheetName = 'test1';
-const worksheet = workbook.Sheets[sheetName];
-const records = xlsx.utils.sheet_to_json(worksheet);
-// lee el reglon posterior al encabezado
-const user = records[0];
+// userRequestBody.ts o el archivo correspondiente
+import { lecturaExcelData } from './lecturaDatos' 
 
-// userRequestBody.js
-export const bodyRequest = {
-  id: parseInt(user.id),
-  username: user.username,
-  firstName: user.firstName,
-  lastName: user.lastName,
-  email: user.email,
-  password: user.password,
-  phone: user.phone,
-  userStatus: parseInt(user.userStatus)
-};
+export async function initializeRequestBodyCreate() {
+    const createUser = await lecturaExcelData('test1', 2)
+     const emailValue = typeof createUser[5] === 'object' ? createUser[5].text : createUser[5] /*transforma el obgeto en texto */
+
+    return {
+  id: parseInt(createUser[1]),
+  username: createUser[2],
+  firstName: createUser[3],
+  lastName: createUser[4],
+  email: emailValue,
+  password: createUser[6],
+  phone: createUser[7],
+  userStatus: parseInt(createUser[8])
+}
+}

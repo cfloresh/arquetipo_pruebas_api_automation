@@ -1,4 +1,4 @@
-import { APIRequest, APIRequestContext, APIResponse } from "@playwright/test";
+import { APIRequestContext, APIResponse } from "@playwright/test";
 import { test } from '@playwright/test';
 
 export class CreateNewUser {

@@ -11,7 +11,7 @@ export class deleteElement {
 
     public async metodoInfo(): Promise<APIResponse> {
         return await test.step(`Eliminar registro`, async () => { 
-            return await this.request.delete('/v2/store/order/2', { 
+            return await this.request.delete('/v2/store/order/4', { 
                 ignoreHTTPSErrors: true  
             })
         })
