@@ -7,7 +7,7 @@ import { deleteElement } from '../../task/execution/eliminarMascota'
 import { updatePets } from '../../task/execution/updateElement'
 import { revisarEliminarElementos } from '../../task/assertions/revisarElminarElemento'
 import { initializeRequestBodyCreate } from '../../data/userRequestBody'
-import { initializeRequestBody } from '../../data/updatePetBodyv2'
+import { initializeRequestBody } from '../../data/updatePetBody'
 
 
 

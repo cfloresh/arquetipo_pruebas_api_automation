@@ -5,21 +5,21 @@ export async function initializeRequestBody() {
     const updateUser = await lecturaExcelData('test2', 2)
 
     return {
-        "id": parseInt(updateUser[1]),
+        "id": parseInt(updateUser.id),
         "category": {
-            "id": parseInt(updateUser[2]),
-            "name": updateUser[3]
+            "id": parseInt(updateUser.id_category),
+            "name": updateUser.name_category
         },
-        "name": updateUser[4],
+        "name": updateUser.name,
         "photoUrls": [
             "string"
         ],
         "tags": [
             {
-                "id": parseInt(updateUser[5]),
-                "name": updateUser[6]
+                "id": parseInt(updateUser.tag_id),
+                "name": updateUser.tag_name
             }
         ],
-        "status": updateUser[7]
+        "status": updateUser.status
     };
 }

@@ -13,13 +13,13 @@ test('Prueba metodo GET request a servlet',{ tag: ['@regresion', '@ServiciosServ
 
 test('Prueba metodo POST request a servlet',{ tag: ['@regresion', '@ServiciosServlet','@ServiciosServlerPost'] }, async () => {
   const dataservlet = await lecturaExcelData('test3', 2)
-  console.log(dataservlet[1])
-  console.log(dataservlet[2])
+  console.log(dataservlet.key1)
+  console.log(dataservlet.key2)
   const context = await request.newContext();
   const response = await context.post('http://ww84.yourserver.com/yourServletPath', {
     data: {
-      key1: dataservlet[1],
-      key2: dataservlet[1],
+      key1: dataservlet.key1,
+      key2: dataservlet.key2,
       // agrega los datos requeridos para tu solicitud POST
     },
     headers: {

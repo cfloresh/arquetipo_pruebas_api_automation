@@ -12,6 +12,6 @@
     "@types/node": "^22.9.0"
   },
   "dependencies": {
-    "exceljs": "^4.4.0"
+    "xlsx": "https://cdn.sheetjs.com/xlsx-0.20.2/xlsx-0.20.2.tgz"
   }
 }
